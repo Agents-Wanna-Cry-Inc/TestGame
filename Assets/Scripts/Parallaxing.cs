@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Parallaxing : MonoBehaviour
 {
-    [SerializeField] Transform[] backgrounds;
-    [SerializeField] public float smoothing = 1.0f;
+    [SerializeField] Transform[] backgrounds;       // Adjustable rray of the background objects that have to parallax.
 
-    private float[] parallaxScales;
+    private float[] parallaxScales;                 // Array of the movement scales of the backgrounds based on their z position.
 
-    private Transform cameraTransform;
-    private Vector3 previousCameraPosition;
+    private Transform cameraTransform;              // Reference to the Transform property of the main camera.
+    private Vector3 previousCameraPosition;         // Position of the camera in the previous frame (to calculate delta movement).
 
+    // Called when the script is enabled, before Start()
     void Awake()
     {
         // *** Create the referense to the transform of the main camera
         cameraTransform = Camera.main.transform;
     }
 
+    // Called when the script is enabled, before the Update is called for the first time
     void Start()
     {
         // *** Initialize the previousCameraPosition with the current position
@@ -34,6 +35,7 @@ public class Parallaxing : MonoBehaviour
         }
     }
 
+    // Update phase of the native player loop
     void Update()
     {
         for (int i = 0; i < backgrounds.Length; i++)
