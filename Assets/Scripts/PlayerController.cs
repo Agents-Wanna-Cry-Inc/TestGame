@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, groundObjects);
         for (int i = 0; i < colliders.Length; i++)
         {
+            Debug.Log(colliders[i]);
             // *** Set grounded to true when colliding with an object other than the player itself
             grounded |= colliders[i].gameObject != gameObject;
         }
