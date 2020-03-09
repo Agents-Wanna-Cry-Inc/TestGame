@@ -6,4 +6,4 @@ The central repository for the next groundbreaking game of 2020. With accompanyi
 
 ### Technical info
 
-* Uses Unity 2018.4.18f1
+* Uses Unity 2019.3.4f1
