@@ -80,8 +80,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Todo: Implement checking jump
-        // *** Check if the player is walking
-        if (System.Math.Abs(horizontalMove) > 0)
+        // *** Check if the player is jumping, walking or idle
+        if (!grounded)
+        {
+            // *** Play the walk animation
+            animator.Play("Player_jump");
+        }
+        else if (System.Math.Abs(horizontalMove) > 0)
         {
             // *** Play the walk animation
             animator.Play("Player_walk");
