@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpRequest = false;                                           // Track if the player is jumping.
     private bool grounded = false;                                              // Track if the player is on the ground.
 
-    private const float groundedRadius = 0.2f;                                  // Radius used by the groundCheck Transform to check contact with the ground.
+    private const float groundedRadius = 0.05f;                                  // Radius used by the groundCheck Transform to check contact with the ground.
 
     // Called when the script is enabled, before the Update is called for the first time
     void Start()
@@ -116,15 +116,20 @@ public class PlayerController : MonoBehaviour
         // *** Reset grounded to false
         grounded = false;
 
-        // *** The player is grounded if a circlecast to the groundcheck position hits anything designated as ground.
-        //     This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, groundObjects);
-
-        // *** Loop through all the collliders in radius
-        for (int i = 0; i < colliders.Length; i++)
+        // *** If the player is moving up, it can never be grounded
+        //     Fix for problem that applied the jump impulse multiple time on fast machines
+        if (rigidbody.velocity.y <= 0)
         {
-            // *** Set grounded to true when colliding with an object other than the player itself
-            grounded |= colliders[i].gameObject != gameObject;
+            // *** The player is grounded if a circlecast to the groundcheck position hits anything designated as ground.
+            //     This can be done using layers instead but Sample Assets will not overwrite your project settings.
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundedRadius, groundObjects);
+
+            // *** Loop through all the collliders in radius
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                // *** Set grounded to true when colliding with an object other than the player itself
+                grounded |= colliders[i].gameObject != gameObject;
+            }
         }
     }
 
