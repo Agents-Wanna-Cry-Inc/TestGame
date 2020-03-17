@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Background
   - Camera
-  - 
+  - Objects
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 1
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 273674779
     locked: 0
   - name: Player
     uniqueID: 2326197747
