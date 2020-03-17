@@ -17,8 +17,8 @@ TagManager:
   - Background
   - Camera
   - Objects
-  - 
-  - 
+  - Interactables
+  - Collectables
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 273674779
+    locked: 0
+  - name: Collectables
+    uniqueID: 311905025
     locked: 0
   - name: Player
     uniqueID: 2326197747
