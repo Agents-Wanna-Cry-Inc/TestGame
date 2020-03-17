@@ -13,8 +13,9 @@ The central repository for the next groundbreaking game of 2020. With accompanyi
 * [`qoc7yp`] Player is too slippery causing it to slide down on a sloped surface
 * [`o1bzcz`] Player may unexpectedly slide of platforms with rounded corners due too slippery surface
 * [`b41yhi`] Background may not fill the entire view (Unity issue?)
+* [`jf8b3y`] Tilemap collider not generated correctly for slightly irregular object, causing objects to float
 
 ### Known limitations
 
 * When using the `PlayerController` script or using the `AutoZoom` script certain properties such as `Gravity Scale` and `Orthographic Size` cannot be edited while running the game.
-
+* Block objects may clip throught the floor due to their `discrete` rigidbody; using `continious` would fix this but the performance penalty is not worth it.
