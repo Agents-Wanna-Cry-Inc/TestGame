@@ -1,22 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // ================== References ==================
     private Animator animator;                                                  // Reference to the Animator component of the player.
     private Rigidbody2D rigidbody;                                              // Reference to the Rigidbody2D component of the player.
     private SpriteRenderer spriteRenderer;                                      // Reference to the SpriteRenderer component of the player.
+    private CinemachineImpulseSource cinemachineImpulseSource;
 
+    // =============== Movement options ===============
     [Range(0.0f, 10.0f)] [SerializeField] float movementSpeed = 5.0f;           // Adjustable movement speed of the player.
-    [Range(0.0f,  0.1f)] [SerializeField] float movementSmoothing = 0.05f;      // Adjustable "glide" when starts or stops moving.
+    [Range(0.0f,  1.0f)] [SerializeField] float movementSmoothing = 0.05f;      // Adjustable "glide" when starts or stops moving.
     [Range(0.0f, 10.0f)] [SerializeField] float jumpForce = 2.0f;               // Adjustable force impulse provided to the player in the up direction.
     [Range(0.0f, 10.0f)] [SerializeField] float jumpMultiplier = 2.0f;          // Adjustable gravity modifier for when the player is pressing jump and is moving up.
     [Range(0.0f, 10.0f)] [SerializeField] float fallMultiplier = 2.5f;          // Adjustable gravity modifier for when the player is falling.
+    [Range(1.0f, 50.0f)] [SerializeField] float impactShakeTreshold = 10.0f;    // Adjustable treshold for the impact that triggers camera shake.
 
+    // ============== Collision settings ==============
     [SerializeField] LayerMask groundObjects;                                   // Layer(s) that contain objects with colliders that can be considered ground.
     [SerializeField] Transform groundCheck;                                     // Adjustable reference to the (empty) child element that performs the ground check.
 
+    // =============== Class variables ================
     private Vector2 currentVelocity = Vector2.zero;                             // Current velocity of the player.
     private float horizontalMove = 0.0f;                                        // Direction and amount the player has to move from input.
     private float defaultGravityScale = 1.0f;                                   // Copy the intial gravity scale.
@@ -24,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpRequest = false;                                           // Track if the player is jumping.
     private bool grounded = false;                                              // Track if the player is on the ground.
 
+    // =========== Preconfigured variables ============
     private const float groundedRadius = 0.05f;                                  // Radius used by the groundCheck Transform to check contact with the ground.
 
     // Called when the script is enabled, before the Update is called for the first time
@@ -33,6 +41,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
 
         // *** Copy the default gravity scale
         defaultGravityScale = rigidbody.gravityScale;
@@ -107,6 +116,14 @@ public class PlayerController : MonoBehaviour
         {
             FlipSprite();
             facingRight = true;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.relativeVelocity.y > impactShakeTreshold)
+        {
+            cinemachineImpulseSource.GenerateImpulse();
         }
     }
 
