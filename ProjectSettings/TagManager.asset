@@ -19,7 +19,7 @@ TagManager:
   - Objects
   - Interactables
   - Collectables
-  - 
+  - Enemies
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2326197747
+    locked: 0
+  - name: Enemies
+    uniqueID: 4173382775
     locked: 0
   - name: Foreground
     uniqueID: 2236554507

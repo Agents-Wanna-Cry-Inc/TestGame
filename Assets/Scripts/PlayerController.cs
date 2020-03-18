@@ -117,10 +117,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Fires when colliding with another collider
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // *** Check if the impact is higher than the treshold
         if (collision.relativeVelocity.y > impactShakeTreshold)
         {
+            // *** Play the camera pixelate animation
             Camera.main.GetComponent<Animator>().Play("Pixelate");
         }
     }
