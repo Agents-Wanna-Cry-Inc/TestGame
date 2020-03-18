@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private Animator animator;                                                  // Reference to the Animator component of the player.
     private Rigidbody2D rigidbody;                                              // Reference to the Rigidbody2D component of the player.
     private SpriteRenderer spriteRenderer;                                      // Reference to the SpriteRenderer component of the player.
-    private CinemachineImpulseSource cinemachineImpulseSource;
 
     // =============== Movement options ===============
     [Range(0.0f, 10.0f)] [SerializeField] float movementSpeed = 5.0f;           // Adjustable movement speed of the player.
@@ -32,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool grounded = false;                                              // Track if the player is on the ground.
 
     // =========== Preconfigured variables ============
-    private const float groundedRadius = 0.05f;                                  // Radius used by the groundCheck Transform to check contact with the ground.
+    private const float groundedRadius = 0.05f;                                 // Radius used by the groundCheck Transform to check contact with the ground.
 
     // Called when the script is enabled, before the Update is called for the first time
     void Start()
@@ -41,7 +40,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
 
         // *** Copy the default gravity scale
         defaultGravityScale = rigidbody.gravityScale;
@@ -123,7 +121,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.relativeVelocity.y > impactShakeTreshold)
         {
-            cinemachineImpulseSource.GenerateImpulse();
+            Camera.main.GetComponent<Animator>().Play("Pixelate");
         }
     }
 
