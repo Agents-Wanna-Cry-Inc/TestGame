@@ -1,0 +1,6 @@
+[submodule "Packages/Packages/com.unity.2d.tilemap.extra"]
+	path = Packages/Packages/com.unity.2d.tilemap.extra
+	url = https://github.com/Unity-Technologies/2d-extras.git
+[submodule "Packages/com.unity.2d.tilemap.extra"]
+	path = Packages/com.unity.2d.tilemap.extra
+	url = https://github.com/Unity-Technologies/2d-extras.git

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2922590810169796722}
   - component: {fileID: 2922590810169796723}
   - component: {fileID: 2922590810169796724}
+  - component: {fileID: 25046204}
   m_Layer: 12
   m_Name: Door_side
   m_TagString: Untagged
@@ -91,8 +92,8 @@ BoxCollider2D:
   m_GameObject: {fileID: 2922590810169796725}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: 83a36d9fc99d3ffa39592bb400459230, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.04669571, y: -0.01691246}
@@ -108,3 +109,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.12535858, y: 1.3411751}
   m_EdgeRadius: 0
+--- !u!114 &25046204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2922590810169796725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4734471821219c345bac1d6f5437c746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 0}
+  transition: {fileID: 0}
+  transitionDuration: 1
